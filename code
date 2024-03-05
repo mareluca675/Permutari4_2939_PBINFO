@@ -1,0 +1,39 @@
+#include <fstream>
+#include <algorithm>
+
+using namespace std;
+
+int n, vec[100001], poz[100001], cnt = 1, p = 1, q = 1;
+
+int main()
+{
+    ifstream cin("permutari4.in");
+    ofstream cout("permutari4.out");
+    
+    cin >> n;
+    
+    for(int i = 1; i <= n; i ++){
+        cin >> vec[i];
+        poz[vec[i]] = i;
+    }
+    
+    p = poz[1];
+    q = poz[1];
+    for(int l = 2; l <= n; l ++){
+        if(poz[l] < p){
+            p = poz[l];
+        }
+        
+        if(poz[l] > q){
+            q = poz[l];
+        }
+        
+        if(q - p + 1 == l){
+            cnt ++;
+        }
+    }
+    
+    cout << cnt;
+    
+    return 0;
+}
